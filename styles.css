@@ -249,6 +249,7 @@ p {
 
 .button-primary {
   background: var(--lime);
+  color: var(--purple);
 }
 
 .button-secondary {

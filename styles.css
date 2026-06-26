@@ -5,11 +5,34 @@
   --purple: #5b42c8;
   --lilac: #b47be0;
   --lime: #dcff17;
+  --green: #009844;
   --blue: #64c8f5;
   --pink: #ff79ad;
   --orange: #ff7f3b;
   --line: 2px solid var(--ink);
   --shadow: 7px 7px 0 var(--ink);
+  --cursor-x: 0px;
+  --cursor-y: 0px;
+}
+
+@keyframes mascot-bob {
+  0%,
+  100% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: -0.45rem;
+  }
+}
+
+@keyframes label-wiggle {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  50% {
+    rotate: -2deg;
+  }
 }
 
 * {
@@ -52,6 +75,7 @@ a {
   font-weight: 900;
   text-align: center;
   text-transform: uppercase;
+  box-shadow: inset 0 -2px 0 var(--lime);
 }
 
 .site-header {
@@ -66,6 +90,14 @@ a {
   background: var(--purple);
   border: 2px solid var(--lime);
   backdrop-filter: blur(14px);
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -0.45rem 0;
+  height: 0.45rem;
+  background: linear-gradient(90deg, var(--green) 0 10%, var(--lilac) 10% 20%, #2853d9 20% 30%, #ff1710 30% 40%, var(--lime) 40% 50%, var(--paper) 50% 60%, var(--orange) 60% 70%, #231f20 70% 80%, var(--purple) 80% 90%, #f5bee4 90% 100%);
 }
 
 .logo-link img {
@@ -114,11 +146,13 @@ a {
 .site-nav a:focus-visible {
   background: var(--lime);
   border-color: var(--ink);
+  color: var(--purple);
   outline: 0;
 }
 
 section {
   position: relative;
+  scroll-margin-top: 7rem;
   padding: clamp(2.1rem, 4.6vw, 3.6rem) clamp(0.85rem, 3vw, 2.4rem);
   border-bottom: var(--line);
 }
@@ -134,6 +168,18 @@ section {
   letter-spacing: 0;
   text-transform: uppercase;
   transform: rotate(-1.4deg);
+  animation: label-wiggle 2.6s ease-in-out infinite;
+}
+
+.reveal-item {
+  opacity: 0;
+  translate: 0 1.2rem;
+  transition: opacity 420ms ease, translate 420ms ease;
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  translate: 0 0;
 }
 
 h1,
@@ -183,14 +229,27 @@ p {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  transform: scale(1.04) translate(var(--cursor-x), var(--cursor-y));
+  transition: transform 220ms ease-out;
 }
 
 .hero::after {
-  content: none;
+  content: "";
+  position: absolute;
+  right: clamp(1rem, 5vw, 4rem);
+  bottom: clamp(1rem, 4vw, 2rem);
+  z-index: 1;
+  width: clamp(8rem, 18vw, 14rem);
+  aspect-ratio: 1;
+  border: var(--line);
+  background: linear-gradient(90deg, var(--lime) 0 50%, var(--pink) 50%);
+  box-shadow: 7px 7px 0 var(--purple);
+  opacity: 0.9;
+  transform: rotate(8deg);
 }
 
 .hero::before {
-  content: "✦  AU AU  ✦  SNIFF  ✦";
+  content: "AU AU  /  SNIFF";
   position: absolute;
   top: clamp(1rem, 4vw, 3rem);
   right: clamp(0.8rem, 3vw, 2.5rem);
@@ -272,7 +331,7 @@ p {
 
 .button:hover,
 .button:focus-visible {
-  transform: translate(4px, 4px) rotate(1deg);
+  transform: translate(calc(4px + var(--play-x, 0px)), calc(4px + var(--play-y, 0px))) rotate(1deg);
   box-shadow: 3px 3px 0 var(--ink);
   outline: 0;
 }
@@ -295,8 +354,26 @@ p {
   z-index: 5;
   pointer-events: none;
   filter: drop-shadow(0 10px 8px rgba(33, 29, 31, 0.18));
-  transform: rotate(var(--mascot-tilt, -5deg));
-  transition: transform 180ms ease;
+  transform: translate(var(--mascot-x, 0), var(--mascot-y, 0)) rotate(var(--mascot-tilt, -5deg)) scale(var(--mascot-scale, 1));
+  transition: transform 180ms ease, opacity 180ms ease;
+  will-change: transform;
+  animation: mascot-bob 2.8s ease-in-out infinite;
+}
+
+.section-title h2 {
+  position: relative;
+}
+
+.section-title h2::after {
+  content: "";
+  position: absolute;
+  left: 0.08em;
+  bottom: -0.12em;
+  z-index: -1;
+  width: 2.2em;
+  height: 0.16em;
+  background: var(--lime);
+  transform: rotate(-2deg);
 }
 
 .hero-mascot {
@@ -310,7 +387,7 @@ p {
     drop-shadow(0 1px 0 var(--purple))
     drop-shadow(0 -1px 0 var(--purple))
     drop-shadow(0 14px 10px rgba(33, 29, 31, 0.2));
-  transform: rotate(5deg);
+  --mascot-tilt: 5deg;
 }
 
 .tag {
@@ -339,12 +416,13 @@ p {
 .about {
   overflow: hidden;
   background:
-    repeating-linear-gradient(-8deg, transparent 0 1.4rem, rgba(255, 127, 59, 0.16) 1.4rem 1.75rem),
+    linear-gradient(90deg, rgba(255, 121, 173, 0.92) 0 28%, transparent 28%),
+    repeating-linear-gradient(-8deg, transparent 0 1.4rem, rgba(255, 127, 59, 0.24) 1.4rem 1.75rem),
     var(--paper);
 }
 
 .about::after {
-  content: "✦";
+  content: "*";
   position: absolute;
   right: clamp(1rem, 5vw, 4rem);
   top: clamp(1rem, 4vw, 2.6rem);
@@ -366,7 +444,7 @@ p {
   bottom: clamp(0.2rem, 2vw, 1.4rem);
   width: clamp(7rem, 15vw, 12rem);
   z-index: 3;
-  transform: rotate(-8deg);
+  --mascot-tilt: -8deg;
   filter:
     drop-shadow(1px 0 0 var(--purple))
     drop-shadow(-1px 0 0 var(--purple))
@@ -429,7 +507,7 @@ p {
 .category-rail a:focus-visible {
   background: var(--lime);
   color: var(--purple);
-  transform: translateY(-0.15rem) rotate(0deg);
+  transform: translate(var(--play-x, 0px), calc(-0.15rem + var(--play-y, 0px))) rotate(0deg);
   outline: 0;
 }
 
@@ -471,6 +549,23 @@ p {
   padding-block: 0.85rem;
   background:
     repeating-linear-gradient(90deg, var(--purple) 0 2.8rem, #4b33b5 2.8rem 5.6rem);
+}
+
+.visual-strip::before {
+  content: "AUTSIDE / CUIDADO COM HUMOR / PASSEIO ATIVADO";
+  position: absolute;
+  left: 50%;
+  top: 0.4rem;
+  z-index: 3;
+  min-width: 34rem;
+  padding: 0.38rem 1rem;
+  border: var(--line);
+  background: var(--lime);
+  color: var(--purple);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-align: center;
+  transform: translateX(-50%) rotate(-1deg);
 }
 
 .visual-strip img {
@@ -626,9 +721,35 @@ p {
 
 .product-card:hover,
 .product-card:focus-visible {
-  transform: translateY(-0.25rem) rotate(-0.5deg);
+  transform: translate(var(--play-x, 0px), calc(-0.25rem + var(--play-y, 0px))) rotate(-0.5deg);
   box-shadow: 8px 8px 0 var(--ink);
   outline: 0;
+}
+
+.product-card:hover .card-mascot,
+.product-card:focus-visible .card-mascot {
+  --mascot-y: -0.45rem;
+  --mascot-scale: 1.08;
+}
+
+.product-card::after {
+  content: "";
+  position: absolute;
+  right: 0.8rem;
+  bottom: 0.75rem;
+  width: 2rem;
+  aspect-ratio: 1;
+  border: var(--line);
+  background: var(--lime);
+  opacity: 0;
+  transform: rotate(12deg) scale(0.6);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.product-card:hover::after,
+.product-card:focus-visible::after {
+  opacity: 1;
+  transform: rotate(12deg) scale(1);
 }
 
 .product-card img {
@@ -696,16 +817,17 @@ p {
   position: relative;
   overflow: hidden;
   background:
+    linear-gradient(90deg, var(--blue) 0 18%, transparent 18%),
     repeating-linear-gradient(0deg, rgba(100, 200, 245, 0.2) 0 0.6rem, transparent 0.6rem 2rem),
     var(--paper);
 }
 
 .community-mascot {
-  right: clamp(-1rem, 2vw, 1rem);
-  bottom: clamp(-0.8rem, 1vw, 0.2rem);
-  width: clamp(8rem, 18vw, 14rem);
-  z-index: 2;
-  transform: rotate(6deg);
+  left: clamp(1rem, 5vw, 4rem);
+  top: clamp(11.5rem, 17vw, 15rem);
+  width: clamp(6.8rem, 12vw, 9rem);
+  z-index: 4;
+  --mascot-tilt: -8deg;
 }
 
 .community-gallery {
@@ -718,7 +840,8 @@ p {
 .community-card {
   min-height: 24rem;
   display: grid;
-  align-content: end;
+  grid-template-rows: minmax(20rem, 1fr) auto;
+  align-content: stretch;
   border: var(--line);
   background: var(--paper);
   box-shadow: 6px 6px 0 var(--purple);
@@ -732,16 +855,18 @@ p {
 }
 
 .community-card:hover {
-  transform: translateY(-0.25rem) rotate(0deg);
+  transform: translate(var(--play-x, 0px), calc(-0.25rem + var(--play-y, 0px))) rotate(0deg);
   box-shadow: 8px 8px 0 var(--lime);
 }
 
 .community-card.tall {
   grid-row: span 2;
+  grid-template-rows: minmax(42rem, 1fr) auto;
 }
 
 .community-card.wide {
   grid-column: span 2;
+  grid-template-rows: minmax(24rem, 1fr) auto;
 }
 
 .community-card img {
@@ -749,6 +874,19 @@ p {
   height: 100%;
   min-height: 20rem;
   object-fit: cover;
+  object-position: center;
+  transition: transform 220ms ease, filter 220ms ease;
+}
+
+.community-card:hover img {
+  transform: scale(1.04);
+  filter: saturate(1.12);
+}
+
+.community-card:nth-child(2) img,
+.community-card:nth-child(5) img,
+.community-card:nth-child(6) img {
+  object-position: center top;
 }
 
 .community-card div {
@@ -1015,6 +1153,7 @@ p {
 
   .community-card.tall {
     grid-row: span 1;
+    grid-template-rows: minmax(20rem, 1fr) auto;
   }
 
   .product-card {

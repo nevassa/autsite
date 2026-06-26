@@ -483,12 +483,24 @@ p {
 }
 
 .shop::before {
-  content: "produtos para humanos de estimação";
-  position: absolute;
-  top: clamp(1.2rem, 2.2vw, 1.8rem);
-  left: clamp(10rem, 24vw, 23rem);
-  z-index: 2;
-  max-width: min(23rem, calc(100% - 2rem));
+  content: none;
+}
+
+.shop-callout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0;
+  min-height: 25rem;
+  padding: 1rem 0.4rem 0.6rem;
+  pointer-events: none;
+}
+
+.shop-callout span {
+  display: block;
+  max-width: 15rem;
   padding: 0.38rem 0.85rem;
   border: var(--line);
   background: var(--orange);
@@ -497,12 +509,23 @@ p {
   font-weight: 900;
   text-align: center;
   text-transform: uppercase;
-  transform: rotate(-4deg);
+  transform: rotate(-7deg) translate(1.2rem, -4.4rem);
   transform-origin: center;
   box-shadow: 4px 4px 0 var(--lime);
 }
 
-.shop > * {
+.shop-callout img {
+  width: clamp(6.6rem, 11vw, 9.2rem);
+  filter:
+    drop-shadow(1px 0 0 var(--purple))
+    drop-shadow(-1px 0 0 var(--purple))
+    drop-shadow(0 1px 0 var(--purple))
+    drop-shadow(0 -1px 0 var(--purple))
+    drop-shadow(0 8px 6px rgba(33, 29, 31, 0.14));
+  transform: rotate(7deg) translateX(-1.1rem);
+}
+
+.shop > *:not(.shop-callout) {
   position: relative;
   z-index: 1;
 }
@@ -894,6 +917,14 @@ p {
     justify-content: flex-start;
   }
 
+  .shop-callout {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: min(24rem, 100%);
+    margin: -0.35rem 0 1.1rem auto;
+  }
+
   .product-media {
     position: static;
   }
@@ -924,6 +955,19 @@ p {
   .community-gallery,
   .visual-strip {
     grid-template-columns: 1fr;
+  }
+
+  .shop-callout {
+    margin-inline: 0;
+    justify-content: flex-start;
+  }
+
+  .shop-callout span {
+    font-size: 0.66rem;
+  }
+
+  .shop-callout img {
+    width: 5.2rem;
   }
 
   .product-feature,

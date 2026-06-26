@@ -583,7 +583,7 @@ p {
 }
 
 .card-mascot-lean {
-  top: 5.9rem;
+  top: 4.4rem;
   right: -0.45rem;
   max-height: clamp(5.8rem, 10vw, 7.4rem);
 }
@@ -1006,7 +1006,7 @@ p {
   }
 
   .card-mascot-lean {
-    top: 5.7rem;
+    top: 4.6rem;
     right: -0.25rem;
     max-height: 5.8rem;
   }

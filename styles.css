@@ -485,20 +485,21 @@ p {
 .shop::before {
   content: "produtos para humanos de estimação";
   position: absolute;
-  top: 1rem;
-  right: 0.8rem;
-  z-index: 0;
-  max-width: min(28rem, calc(100% - 1.6rem));
-  padding: 0.35rem 1rem;
+  top: clamp(1.2rem, 2.2vw, 1.8rem);
+  left: clamp(10rem, 24vw, 23rem);
+  z-index: 2;
+  max-width: min(23rem, calc(100% - 2rem));
+  padding: 0.38rem 0.85rem;
   border: var(--line);
   background: var(--orange);
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 900;
   text-align: center;
   text-transform: uppercase;
-  transform: rotate(3deg);
+  transform: rotate(-4deg);
   transform-origin: center;
+  box-shadow: 4px 4px 0 var(--lime);
 }
 
 .shop > * {

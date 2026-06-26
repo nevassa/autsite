@@ -1,7 +1,7 @@
 const productCards = document.querySelectorAll(".product-card");
 const playfulCards = document.querySelectorAll(".product-card, .community-card, .button, .category-rail a");
 const mascots = document.querySelectorAll(".site-mascot");
-const revealItems = document.querySelectorAll(".section-title, .about-copy, .about-image, .visual-strip img, .product-card, .shop-callout, .community-card");
+const revealItems = document.querySelectorAll(".section-title, .about-copy, .about-image, .visual-strip img, .product-card, .shop-callout, .community-card, .finale-copy, .finale-mascot");
 
 revealItems.forEach((item) => item.classList.add("reveal-item"));
 

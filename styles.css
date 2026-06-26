@@ -411,7 +411,7 @@ p {
 
 .about {
   overflow: hidden;
-  background: linear-gradient(90deg, var(--lilac) 0 28%, var(--paper) 28% 100%);
+  background: var(--lilac);
 }
 
 .about::after {
@@ -455,7 +455,40 @@ p {
 }
 
 .section-title h2 {
-  text-shadow: 0.04em 0.04em 0 rgba(220, 255, 23, 0.9);
+  text-shadow: none;
+}
+
+.about .section-title h2 {
+  display: inline-block;
+  padding: 0.15rem 0.35rem 0.3rem;
+  background: var(--paper);
+  color: var(--purple);
+  box-shadow: 0.16em 0.16em 0 var(--orange);
+}
+
+.about .section-title {
+  display: block;
+  margin-bottom: 0.85rem;
+}
+
+.about .kicker {
+  display: block;
+  width: fit-content;
+  margin-bottom: 0.45rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--paper);
+  font-size: clamp(1.8rem, 4.2vw, 3.6rem);
+  line-height: 0.9;
+  text-shadow: 0.08em 0.08em 0 var(--purple);
+  transform: none;
+  animation: none;
+}
+
+.shop .shop-head h2 {
+  color: var(--purple);
+  text-shadow: none;
 }
 
 .shop-head {
@@ -508,7 +541,7 @@ p {
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(20rem, 1.18fr);
   gap: clamp(1.2rem, 3vw, 2.4rem);
-  align-items: center;
+  align-items: start;
 }
 
 .about-copy p {
@@ -548,7 +581,7 @@ p {
   grid-template-columns: 1.2fr 0.9fr 0.9fr;
   gap: 0.85rem;
   padding-block: 0.85rem;
-  background: linear-gradient(90deg, var(--purple) 0 34%, var(--lilac) 34% 67%, var(--orange) 67% 100%);
+  background: var(--orange);
 }
 
 .visual-strip::before {
@@ -813,7 +846,7 @@ p {
 .community {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(90deg, var(--orange) 0 18%, var(--paper) 18% 74%, var(--purple) 74% 100%);
+  background: var(--orange);
 }
 
 .community .section-title h2 {
@@ -821,7 +854,7 @@ p {
   padding: 0.2rem 0.35rem 0.35rem;
   background: var(--purple);
   color: var(--paper);
-  text-shadow: 0.05em 0.05em 0 var(--orange);
+  text-shadow: none;
   box-shadow: 0.18em 0.18em 0 var(--lime);
 }
 
@@ -831,8 +864,8 @@ p {
 
 .community-mascot {
   left: clamp(1rem, 5vw, 4rem);
-  top: clamp(11.5rem, 17vw, 15rem);
-  width: clamp(6.8rem, 12vw, 9rem);
+  top: clamp(14.5rem, 20vw, 18rem);
+  width: clamp(6.2rem, 11vw, 8.2rem);
   z-index: 4;
   --mascot-tilt: -8deg;
 }
@@ -915,6 +948,92 @@ p {
 
 .community-card span {
   line-height: 1.3;
+}
+
+.finale {
+  min-height: min(52rem, 92vh);
+  display: grid;
+  align-items: end;
+  justify-items: center;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 3rem) 0;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(91, 66, 200, 0.95) 0 16%, transparent 16% 84%, rgba(255, 127, 59, 0.95) 84% 100%),
+    #231f20;
+  color: var(--paper);
+}
+
+.finale::before,
+.finale::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  border: var(--line);
+  box-shadow: 7px 7px 0 var(--purple);
+}
+
+.finale::before {
+  left: clamp(1rem, 7vw, 6rem);
+  top: clamp(2rem, 7vw, 6rem);
+  width: clamp(5rem, 12vw, 9rem);
+  aspect-ratio: 1;
+  background: var(--lime);
+  transform: rotate(-10deg);
+}
+
+.finale::after {
+  right: clamp(1rem, 8vw, 7rem);
+  top: clamp(4rem, 10vw, 8rem);
+  width: clamp(4rem, 9vw, 7rem);
+  aspect-ratio: 1;
+  background: var(--lilac);
+  transform: rotate(12deg);
+}
+
+.finale-copy {
+  position: relative;
+  z-index: 2;
+  width: min(68rem, 100%);
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-bottom: -5vw;
+}
+
+.finale-copy h2 {
+  max-width: 12ch;
+  margin: 0;
+  color: var(--paper);
+  text-align: right;
+  text-shadow: none;
+}
+
+.finale-copy h2::after {
+  content: none;
+}
+
+.finale .kicker {
+  background: var(--orange);
+  color: var(--paper);
+  box-shadow: 5px 5px 0 var(--lime);
+}
+
+.finale-mascot {
+  position: relative;
+  z-index: 1;
+  width: min(76rem, 98vw);
+  max-height: 72vh;
+  object-fit: contain;
+  object-position: bottom center;
+  margin-bottom: clamp(-2.5rem, -4vw, -1rem);
+  filter:
+    drop-shadow(2px 0 0 var(--purple))
+    drop-shadow(-2px 0 0 var(--purple))
+    drop-shadow(0 2px 0 var(--purple))
+    drop-shadow(0 -2px 0 var(--purple))
+    drop-shadow(0 1.2rem 0 rgba(91, 66, 200, 0.55));
+  animation: mascot-bob 3.2s ease-in-out infinite;
 }
 
 .product-page {
@@ -1151,6 +1270,28 @@ p {
 
   .shop-callout img {
     width: 5.2rem;
+  }
+
+  .finale {
+    min-height: 34rem;
+    padding-top: 2rem;
+  }
+
+  .finale-copy {
+    display: block;
+    margin-bottom: -1rem;
+  }
+
+  .finale-copy h2 {
+    max-width: 9ch;
+    text-align: left;
+  }
+
+  .finale-mascot {
+    width: 135vw;
+    max-width: none;
+    max-height: 26rem;
+    margin-left: -12vw;
   }
 
   .product-feature,

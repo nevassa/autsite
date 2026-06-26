@@ -46,11 +46,7 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background:
-    linear-gradient(90deg, rgba(91, 66, 200, 0.08) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(91, 66, 200, 0.08) 1px, transparent 1px),
-    var(--paper);
-  background-size: 4.5rem 4.5rem;
+  background: var(--paper);
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
@@ -97,7 +93,7 @@ a {
   position: absolute;
   inset: auto 0 -0.45rem 0;
   height: 0.45rem;
-  background: linear-gradient(90deg, var(--green) 0 10%, var(--lilac) 10% 20%, #2853d9 20% 30%, #ff1710 30% 40%, var(--lime) 40% 50%, var(--paper) 50% 60%, var(--orange) 60% 70%, #231f20 70% 80%, var(--purple) 80% 90%, #f5bee4 90% 100%);
+  background: linear-gradient(90deg, var(--purple) 0 25%, var(--lilac) 25% 50%, var(--orange) 50% 75%, var(--lime) 75% 100%);
 }
 
 .logo-link img {
@@ -415,10 +411,7 @@ p {
 
 .about {
   overflow: hidden;
-  background:
-    linear-gradient(90deg, rgba(255, 121, 173, 0.92) 0 28%, transparent 28%),
-    repeating-linear-gradient(-8deg, transparent 0 1.4rem, rgba(255, 127, 59, 0.24) 1.4rem 1.75rem),
-    var(--paper);
+  background: linear-gradient(90deg, var(--lilac) 0 28%, var(--paper) 28% 100%);
 }
 
 .about::after {
@@ -431,7 +424,7 @@ p {
   display: grid;
   place-items: center;
   border: var(--line);
-  background: var(--pink);
+  background: var(--orange);
   color: #fff;
   font-size: 1.5rem;
   font-weight: 900;
@@ -547,8 +540,7 @@ p {
   grid-template-columns: 1.2fr 0.9fr 0.9fr;
   gap: 0.85rem;
   padding-block: 0.85rem;
-  background:
-    repeating-linear-gradient(90deg, var(--purple) 0 2.8rem, #4b33b5 2.8rem 5.6rem);
+  background: linear-gradient(90deg, var(--purple) 0 34%, var(--lilac) 34% 67%, var(--orange) 67% 100%);
 }
 
 .visual-strip::before {
@@ -592,10 +584,7 @@ p {
 .shop {
   position: relative;
   overflow: hidden;
-  background:
-    linear-gradient(135deg, rgba(220, 255, 23, 0.52) 0 1.4rem, transparent 1.4rem 2.8rem),
-    var(--paper);
-  background-size: 2.8rem 2.8rem;
+  background: linear-gradient(90deg, var(--lime) 0 22%, var(--paper) 22% 76%, var(--lilac) 76% 100%);
 }
 
 .shop::before {
@@ -651,7 +640,7 @@ p {
   width: clamp(7rem, 13vw, 10rem);
   aspect-ratio: 1;
   border: var(--line);
-  background: var(--pink);
+  background: var(--lilac);
   transform: rotate(8deg);
   box-shadow: 6px 6px 0 var(--lime);
 }
@@ -816,10 +805,7 @@ p {
 .community {
   position: relative;
   overflow: hidden;
-  background:
-    linear-gradient(90deg, var(--blue) 0 18%, transparent 18%),
-    repeating-linear-gradient(0deg, rgba(100, 200, 245, 0.2) 0 0.6rem, transparent 0.6rem 2rem),
-    var(--paper);
+  background: linear-gradient(90deg, var(--orange) 0 18%, var(--paper) 18% 74%, var(--purple) 74% 100%);
 }
 
 .community-mascot {
